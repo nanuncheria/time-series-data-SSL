@@ -1,4 +1,4 @@
-# Self-Supervised-Learning of time series data
+# Self-Supervised Learning of time series data
 
 
 ## linearclassifier_all 
