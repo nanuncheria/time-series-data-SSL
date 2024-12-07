@@ -11,13 +11,12 @@ class CPC(nn.Module):
         self.batch_size = batch_size
         self.seq_len = seq_len
         self.timestep = timestep
-        ########################################################################
-        #                         START OF YOUR CODE                           #
-        ########################################################################
+        
         self.encoder = nn.Sequential(
             nn.Conv1d(16, 64, kernel_size=3, stride=1, padding=1, bias=False),
             nn.BatchNorm1d(64),
             nn.ReLU(inplace=True),
+            nn.Dropout(p=0.1),  # Augmentation
             nn.Conv1d(64, 64, kernel_size=3, stride=1, padding=1, bias=False),
             nn.BatchNorm1d(64),
             nn.ReLU(inplace=True),
@@ -27,9 +26,7 @@ class CPC(nn.Module):
                           batch_first=True)  # last layer=tanh, c=[-1,1]
         self.W = nn.ModuleList([nn.Linear(32, 64) for _ in range(timestep)])
         self.log_softmax = nn.LogSoftmax(dim=1)
-        ########################################################################
-        #                          END OF YOUR CODE                            #       
-        ########################################################################
+       
         def _weights_init(m):
             if isinstance(m, nn.Linear):
                 nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
@@ -56,9 +53,7 @@ class CPC(nn.Module):
     def forward(self, x, hidden):
         # input sequence is [N, C, L], e.g. size [bs, 16, 200]
         batch_size = x.size(0)
-        ########################################################################
-        #                         START OF YOUR CODE                           #
-        ########################################################################
+      
         # encode sequence x
         z = self.encoder(x)  # encoded sequence is [N, C, L], e.g. size [bs, 64, 200]
         
@@ -70,9 +65,7 @@ class CPC(nn.Module):
         forward_seq = z[:, :t+1, :]  # e.g. size [bs, t, 64]
         output, hidden = self.gru(forward_seq, hidden)  # output, e.g. size [bs, t, 32]
         c_t = output[:, t, :].view(batch_size, 32)  # c_t, e.g. size [bs, 32]
-        ########################################################################
-        #                          END OF YOUR CODE                            #       
-        ########################################################################
+       
         nce = 0
         for k in range(self.timestep):
             linear = self.W[k]
