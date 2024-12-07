@@ -1,18 +1,27 @@
 # Self-Supervised Learning of time series data
 
+## CPC.py
+model with temporal encodings; least modified from the provided model used in the paper
 
-## linearclassifier_all 
-deals with linear classification as downstream processes of the provided codes
+
+## ( CPC_all.py )
+produces PCA graph and less relevant training metrics for interpreting the training of the CPC model
 
 
-## linearclassifier_all_new
+## TS.py
+model with temporal spectral encodings; suggested new model
+
+
+## ( TS_all.py )
+produces PCA graph and less relevant training metrics for interpreting the training of the TS model
+
+
+## linearclassifier_all.py
+implements linear classification in addition to the training and testing of the model
+produces relevant metrics to evaluate the training quality
+
+
+## linearclassifier_all_new.py
 aims to implement two different linear classification methods as downstream processes
 
-
-## CPC_train_all
-trains and tests model with temporal encodings as done in the provided codes
-
-
-## TS_all
-trains and tests model with temporal and spectral encodings, suggested as the new method.
 
