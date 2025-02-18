@@ -26,7 +26,10 @@ exercise sheet provided by the group responsible for the codes used in the refer
 ## un-sup comparison.ipynb
 codes used to produce graph that compares the unsupervised and supervised model results
 
-## SUPERVISED.csv, UNSUPERVISED.csv, UNSUPERVISED_LR.csv (only Logistic Regression results remaining), withouttrain.csv (data from before training.ipynb)
+## SUPERVISED.csv
+## UNSUPERVISED.csv
+## UNSUPERVISED_LR.csv (only Logistic Regression results remaining)
+## withouttrain.csv (data from before training.ipynb)
 data is saved within these files to produce graphs that portray ROC-AUC results over epochs for diff conditions
 
 
